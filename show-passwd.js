@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const eyeOpen = toggle.querySelector(".eye-open");
     const eyeSlash = toggle.querySelector(".eye-slash");
 
-    toggle.addEventListener("click", function () {
-        const isHidden = password.type === "password";
+    let isHidden = true; // default: password mode
 
+    toggle.addEventListener("click", function () {
         if (isHidden) {
             // SHOW → bisa ngetik
             password.type = "text";
@@ -18,11 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
             eyeSlash.style.display = "inline";
             password.focus();
         } else {
-            // HIDE → TIDAK bisa ngetik
+            // HIDE → dimatikan ngetiknya
             password.type = "password";
             password.readOnly = true;
             eyeOpen.style.display = "inline";
             eyeSlash.style.display = "none";
         }
+
+        isHidden = !isHidden;
     });
 });
