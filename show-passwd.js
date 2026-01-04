@@ -7,24 +7,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const eyeOpen = toggle.querySelector(".eye-open");
     const eyeSlash = toggle.querySelector(".eye-slash");
 
-    let isHidden = true; // default: password mode
+    let isShow = false;
 
     toggle.addEventListener("click", function () {
-        if (isHidden) {
-            // SHOW → bisa ngetik
+
+        if (!isShow) {
+            // ===== SHOW =====
             password.type = "text";
-            password.readOnly = false;
+            password.readOnly = false; // bisa ngetik
             eyeOpen.style.display = "none";
             eyeSlash.style.display = "inline";
             password.focus();
+            isShow = true;
+
         } else {
-            // HIDE → dimatikan ngetiknya
+            // ===== HIDE =====
             password.type = "password";
-            password.readOnly = true;
+            password.readOnly = true; // ❌ kunci
             eyeOpen.style.display = "inline";
             eyeSlash.style.display = "none";
+            isShow = false;
         }
-
-        isHidden = !isHidden;
     });
 });
